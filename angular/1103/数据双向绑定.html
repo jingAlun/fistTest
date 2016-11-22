@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.content{
+			width: 850px;
+			margin: 20px auto;
+		}
+		.content div{
+			padding-bottom: 30px;
+		}
+		fieldset{
+			width: 500px;
+			padding:20px;
+		}
+		fieldset legend{
+			margin: 0 auto;
+		}
+		fieldset p{
+			padding-top: 15px;
+		}
+	</style>
+</head>
+<body>
+	 <div class="content"  ng-app>
+		<div>
+			<label for="">姓名：</label><input type="text" ng-model="name">
+		</div>
+		<div>
+			<label for="">性别：</label>
+			<input type="radio" name="_sex" value="男" ng-model="sex">男
+			<input type="radio" name="_sex" value="女" ng-model="sex">女
+		</div>
+		<div>
+			<label for="">兴趣：</label>
+			<input type="checkbox" name="interest" ng-true-value='"游泳"' ng-false-value=" " ng-model="info1">游泳
+			<input type="checkbox" name="interest" ng-true-value='"旅游"' ng-false-value=" " ng-model="info2">旅游
+			<input type="checkbox" name="interest" ng-true-value='"打篮球"' ng-false-value=" " ng-model="info3">打篮球
+		</div>
+		<fieldset>
+			<legend>{{name}} :基本信息如下</legend>
+			<p>些别：{{sex}}</p>
+			<p>兴趣：{{info1}} {{info2}} {{info3}}</p>
+		</fieldset>
+	</div>
+
+
+	
+	<script type="text/javascript" src="../angular.min.js"></script>
+</body>
+</html>

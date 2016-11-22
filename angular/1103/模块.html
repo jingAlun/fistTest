@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul li{
+			line-height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" ng-app="myapp">
+		模块化信息：<input type="text" placeholder="请输入过滤信息" ng-model="nameText">
+
+		<ul ng-controller="mycon"> 
+			<li ng-repeat="x in names | filter:nameText">{{$index+1}} 、今年{{x.name}}已经{{x.age}}岁了！第一个：{{$first}}-最后一个：{{$last}}-中间：{{$middle}}-：{{$even}}-奇数：{{$odd}}</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript" src="../angular-animate.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[])
+		app.controller('mycon',function($scope){
+			
+			$scope.names = [
+								{name: 'a乔乐', age:'25'},
+								{name: 'b周迅', age:'40'},
+								{name: 'c魏瑞', age:'25'},
+								{name: 'd展昭', age:'98'}
+							];
+
+		})
+	</script>
+</body>
+</html>

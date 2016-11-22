@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		[ng-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div ng-controller="firstCtrol">
+		<h1>第一种过滤器：</h1>
+		<ul ng-cloak>
+			<li ng-repeat="name in filterList">{{ name }}</li>
+		</ul>
+	</div>
+	<div ng-controller="secondCtrol">
+		<h1>第二种过滤器</h1>
+		<input type="text" placeholder="请输入过滤信息..." ng-model="textName">
+		<ul>
+			<li ng-repeat="info in names | filter:textName">{{ $index+1 }}、{{ info.name }}今年已经{{ info.age }}岁了!</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+		app.controller('firstCtrol',['$scope',function($scope){
+			$scope.filterList = ['currency','date','filter','json','limitTo', 'lowercase', 'number', 'orderBy', 'uppercase'];
+		}]);
+
+		app.controller('secondCtrol',['$scope',function($scope){
+			$scope.names =[
+				{name: 'a乔乐', age:'25'},
+                {name: 'b周迅', age:'40'},
+                {name: 'c魏瑞', age:'25'},
+                {name: 'd展昭', age:'98'}
+			]
+
+		}])
+	</script>
+</body>
+</html>

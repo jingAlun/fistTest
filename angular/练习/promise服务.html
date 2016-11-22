@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+
+<body ng-controller="contrl">
+	<input type="checkbox" ng-model='tit'><span>{{ tit }}</span>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+			
+			app.controller('contrl',['$scope','$q',function($scope,$q){
+				var defer = $q.defer();
+				var promise = defer.promise;
+				
+
+			}])
+	</script>
+</body>
+</html>

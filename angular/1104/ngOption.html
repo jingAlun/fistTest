@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>基础ngOption</title>
+	<style type="text/css">
+		select{
+			margin-top:20px;
+		}
+	</style>
+</head>
+<body>
+	<div ng-controller="ctrl">
+		<span>基础下拉列表：</span>
+		<select ng-model="seleted" ng-options="a.name for a in animals">
+			<option value="">请选择您的萌</option>
+		</select>
+		<br>
+		<span>自定义下拉显示名称:</span>
+		<select ng-model="seleted" ng-options="(a.name + '爱吃' + a.food) for a in animals">
+			<option value="">请选择您的萌</option>
+		</select>
+		<br>
+		<span>分组选项：</span>
+		<select ng-model="seleted" ng-options="(a.name + '的爱好是' + a.favor) group by a.sex for a in animals"></select>
+	</div>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+	var app = angular.module('myapp',[]);
+		app.controller('ctrl',['$scope',function($scope){
+			$scope.animals = [
+			      {
+			        id: '00001',
+			        name: '猫',
+			        sex: '雌',
+			        food: '鱼',
+			        favor: '玩球'
+			      },
+			      {
+			        id: '00002',
+			        name: '狗',
+			        sex: '雄',
+			        food: '骨头',
+			        favor: '接盘子'
+			      },
+			      {
+			        id: '00003',
+			        name: '兔',
+			        sex: '雌',
+			        food: '胡萝卜',
+			        favor: '刨洞'
+			      },
+			      {
+			        id: '00004',
+			        name: '狮',
+			        sex: '雄',
+			        food: '肉',
+			        favor: '猎物'
+			      }
+			]
+
+
+		}])
+	
+
+	</script>
+</body>
+</html>

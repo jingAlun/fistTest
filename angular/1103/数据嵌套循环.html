@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="../bootstrap.min.css">
+	
+	<style type="text/css">
+		table.table > tbody > tr > td,
+		table.table > tbody > tr > th {
+			vertical-align: middle;
+		}
+		.table tr{height: 50px}
+		.table .head-title{font-size: 26px}
+		.table tr .title-desc{font-size: 16px; color: #999999; padding-right: 50px;}
+		.table tr .year-interest{font-size: 24px;color: #f44247;}
+		.table tr .etc-text{font-size: 16px}
+		.table tr .is-support{font-size: 20px}
+		.table tr .glyphicon-ok{color: #2e3a4b}
+		.table tr .nested-index{color: #C8C2C2;position: absolute;display: block;margin: -8px 0 0 204px;}
+	</style>
+
+</head>
+<body>
+	<table class="table table-bordered" ng-controller="MainCtrl">
+		<tr class="head-title">
+			<th class="col-xs-3"></th>
+			<th class="col-xs-3 text-center">P2P</th>
+			<th class="col-xs-3 text-center">余额宝</th>
+			<th class="col-xs-3 text-center">银行理财产品</th>
+		</tr>
+		<tr ng-repeat="info in infoList" ng-cloak>
+			<td class="text-right title-desc" ng-bind="info.title"></td>
+			<td class="text-center" ng-repeat="key in ['p2p', 'yeb', 'bank']">
+    			<span ng-if="info[key]">
+     				<span ng-if="info[key].length" ng-bind="info[key]" ng-class="{true: 'year-interest', false: 'etc-text'}[$parent.$parent.$parent.$first]"></span>
+      				<span ng-if="!info[key].length" class="glyphicon glyphicon-ok is-support"></span>
+   		 		</span>
+				<span ng-if="!info[key]" class="glyphicon glyphicon-remove is-support"></span>
+				<span class="nested-index" ng-bind="$parent.$index + '-' + $index"></span>
+			</td>
+		</tr>
+	</table>
+
+	</table>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var myApp = angular.module('myApp', []);
+		myApp.controller('MainCtrl',['$scope', function($scope) {
+			$scope.infoList = [
+				{
+					title: '预期年化收益率',
+					p2p: '7% - 14%',
+					bank: '约 4% - 5.5%',
+					yeb: '约 3% - 4%'
+				},
+				{
+					title: '买入当天生息',
+					p2p: true,
+					bank: false,
+					yeb: false
+				},
+				{
+					title: '买入次日开始付息',
+					p2p: true,
+					bank: false,
+					yeb: false
+				},
+				{
+					title: '每日付息',
+					p2p: true,
+					bank: false,
+					yeb: true
+				},
+				{
+					title: '每日利息自动复投',
+					p2p: true,
+					bank: false,
+					yeb: '同货币基金'
+				},
+				{
+					title: '期限灵活，随时可取',
+					p2p: true,
+					bank: false,
+					yeb: true
+				},
+				{
+					title: '可以零钱增投',
+					p2p: true,
+					bank: false,
+					yeb: true
+				}
+			];
+		}]);
+
+	</script>
+</body>
+</html>

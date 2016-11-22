@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		[ng-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body ng-controller="contrl" ng-cloak>
+	<p>{{ name }}</p>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+			app.provider('aaa',function(){ 
+				//配置服务有两种
+				//1
+				this.url = "www.baidu.com";
+				this.setName = function(n){
+					if(n){
+						this.url=n;
+					}
+			}
+			//供应商服务必须指定$get，向外暴露方法
+			this.$get=function() {
+				var obj;
+				var self=this;
+				
+				obj={
+					getName:function() {
+						return "hello:"+self.url;
+					}
+				}
+				return obj;
+			}
+
+		}) 
+		//配置供应商
+		app.config(['aaaProvider',function(aaaProvider) {
+			//$get外面的方法写在config里
+			aaaProvider.setName('qqqqqq');
+		
+		}]);
+		app.controller('contrl',['$scope','aaa',function($scope,aaa){
+			$scope.name = aaa.getName();
+			//控制器里的是写的$get里的方法
+		}])
+	</script>
+</body>
+</html>

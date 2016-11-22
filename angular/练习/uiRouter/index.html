@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		.active{
+			color: red;
+		}
+		.box{
+			width: 200px;
+			height: 200px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body ng-controller="contrl">
+	<a ui-sref="hello" ui-sref-active="active">hello</a>
+	<a ui-sref="about" ui-sref-active="active">about</a>
+	<div class="box" ui-view></div>
+	
+	<script type="text/javascript" src="../../jquery1.7.js"></script>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript" src="../../angular-animate.min.js"></script>
+	<script type="text/javascript" src="../../angular-ui-router.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',['ui.router']);
+		app.config(['$stateProvider',function($stateProvider){
+			$stateProvider
+			  .state('hello', {
+			    url: '/hello',
+			    templateUrl: 'hrllo.html'
+			   
+			  })
+			  
+			
+		}])
+		app.controller('contrl',['$scope',function($scope){
+			
+		}])
+	</script>
+</body>
+</html>

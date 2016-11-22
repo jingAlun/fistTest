@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		button{
+			margin-right: 10px;
+		}
+		.big-bg {width: 100%;height: 30px;margin-top: 16px; background-color: #6dc6ff; }
+
+	</style>
+</head>
+<body ng-controller="ctrolcolor" >
+	<h1>1.基本表达式</h1>
+	<label for="">选择背景色</label>
+	<select ng-model="bgColor" ng-options="k as v for (k, v) in setColor">
+		<option value="">颜色列表</option>
+	</select>
+	
+	<!-- 数组
+		 <select ng-controller="ctrolcolor" ng-options="key.name for key in names">
+		<option value="">fddd</option>
+	</select> -->
+	<button ng-click="bgColor='yellow'">黄色</button>
+	<button ng-click="bgColor='#000'">黑色</button>
+	<button ng-click="bgColor='rgb(199, 237, 204)'">保护色</button>
+	<button ng-click="bgColor='linear-gradient(to bottom, #31E2B9 0%,#C31010 100%)'">渐变色</button>
+	<button ng-click="bgColor='#6dc6ff'">默认色</button>
+	<p class="big-bg" ng-style="setBg(bgColor)"></p>
+
+
+	<h1>class样式形式</h1>
+	<p class="big-bg ng-style: {'background-color': '#ff110e'};"></p>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+			app.controller('ctrolcolor',['$scope',function($scope){
+				$scope.setColor = {
+					red:"红色",
+					blue:"蓝色",
+					green:"绿色"
+				};
+				$scope.setBg = function(color){
+					return {'background':color};
+				}
+				/*$scope.names = [
+					{name:'ff',age:15},
+					{name:'aa',age:25},
+					{name:'bb',age:18}
+				]*/
+
+			}])
+	</script>
+</body>
+</html>

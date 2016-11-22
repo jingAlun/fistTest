@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		h1{
+			font-size: 15px;
+		}
+		input{
+			margin-right: 30px;+
+		}
+		p{
+			width: 500px;
+			height: 30px;
+		}
+		
+		.bg{
+			background: #ccc;
+		}
+		 .big-bg {width: 800px; height: 30px; background-color: #6dc6ff; }
+   		 .small-bg {width: 200px; height: 30px; background-color: #ff33ad; }
+		.red_bg {background: #ff110e;}
+	    .blue_bg {background: #2d3bff;}
+	    .green_bg {background: #4bff2a;}
+
+	</style>
+</head>
+<body>
+	<div>
+		<h1>基本表达式</h1>
+		<label>选择背景色：</label>
+		红色：<input type="checkbox" ng-model="chooseRed">
+		蓝色：<input type="checkbox" ng-model="chooseBlue">
+		绿色：<input type="checkbox" ng-model="chooseGreen">
+		<p class="bg" ng-class="{
+			'red_bg':chooseRed,
+			'blue_bg':chooseBlue,
+			'green_bg':chooseGreen
+		}"></p>
+
+
+		<label>单选背景色：</label>
+		红色：<input type="radio"  ng-model="color" value="red_bg">
+		蓝色：<input type="radio" ng-model="color" value="blue_bg">
+		绿色：<input type="radio" ng-model="color" value="green_bg">
+		<p class="bg" ng-class="color"></p>
+
+
+		<h1>字符串数组形式</h1>
+		<p ng-class="{true: 'big-bg', false: 'small-bg'}[false]"></p>
+
+
+		<h1>class样式形式</h1>
+		<p class="ng-class: {'big-bg': true};"></p>
+
+
+		<h1>对象key/value处理</h1>
+		<p ng-class="{'big-bg':true,'small-bg':false}"></p>
+
+		<h1>动态绑定class</h1>
+		<p  ng-controller="ctrl" ng-class="classname"></p>
+	</div>
+
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+			app.controller('ctrl',['$scope',function($scope){
+				$scope.classname="small-bg";
+
+
+			}])
+
+	</script>
+</body>
+</html>

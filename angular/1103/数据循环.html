@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<!-- <div class="box" ng-app>
+		姓名列表：
+		<ul ng-init="nameList=['Joe','qiaole','wei','miss you','kitty']">
+			<li ng-repeat="name in nameList">{{name}}</li>
+		</ul>
+	</div> -->
+	<div ng-app="myapp">
+		姓名列表：
+		<table ng-controller="mycon">
+			<tr>
+				<th>姓名</th><th>年龄</th>
+			</tr>
+			<tr ng-repeat="info in infoList">
+				<td>{{ info.name}}</td><td>{{ info.age }}</td>
+			</tr>
+		</table>
+	</div>
+
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+		app.controller('mycon',["$scope",function($scope){
+			$scope.infoList=[
+				{name:'aaa',age:25},
+				{name:'bbb',age:29},
+				{name:'ccc',age:35}
+			]
+		}])
+	</script>
+</body>
+</html>

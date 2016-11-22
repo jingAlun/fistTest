@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		[ng-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body ng-controller="contrl" ng-cloak>
+	<div>
+		<h3>1、第一种单参数过滤器</h3>
+		<div>
+			原有数据：{{ names[0].name}}
+			<br>
+			过滤后数据：{{ names[0].name | filter1 }}
+		</div>
+
+		<h3>2、第二种带参数过滤器</h3>
+		<div>
+			原有数据：{{ names[0].name}}
+			<br>
+			过滤后数据：{{ names[0].name | filter2:5 }}
+		</div>
+
+		<h3>3、第三种数组过滤器</h3>
+		<ul>
+			<li ng-repeat="key in ['a334','btt','cfghhs','d']">{{ key | filter3 }}</li>
+		</ul>
+
+		<h3>4、首字母大写过滤器</h3>
+		<ul>
+			<li ng-repeat="name in names">{{ name.name | filter4}}</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+			app.controller('contrl',['$scope',function($scope){
+				$scope.names = [
+					{name: 'a乔乐', tel:'15800000000'},
+					{name: 'b周迅', tel:'18900000000'},
+					{name: 'c魏瑞', tel:'18900000000'},
+					{name: 'd展昭', tel:'19800000000'},
+					{name: 'e暖暖', tel:'15800000000'}
+				]
+
+
+			}])
+			app.filter('filter1',function(){
+				return function(item){
+					return item + '[追加内容：单参数在此过滤！]';
+				}
+			}).filter('filter2',function(){
+
+				return function(item,num){
+				
+					for(var i = 0 ; i < num ; i++){
+						item = item+"!";
+					}
+					return item;
+				}
+			}).filter('filter3',function(){
+				return function(item){
+					//console.log(item)
+					angular.forEach(item,function(val,i){
+						val = i + "、"+ val + "===";
+						//console.log(val)
+						item[i]=val;
+
+					})
+					return item;
+				}
+
+			}).filter('filter4',function(){
+				return function(item){
+					return item.charAt(0).toUpperCase()+item.substr(1);
+					
+				}
+			})
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+0<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		[ng-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body ng-controller="contrl" ng-cloak>
+	<p>{{ name }}</p>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+		app.factory('aaa',function(){ // 相当于js原生工厂模式
+			var obj = {};
+			obj.setName = function(n){
+				this.name = n;
+			};
+			obj.getNmae = function(){
+				return this.name = obj.name;
+			};
+
+			return obj;
+		}) 
+		app.controller('contrl',['$scope','aaa',function($scope,aaa){
+			aaa.setName('iii');
+			//显示到页面
+			$scope.name = aaa.getNmae();
+
+		}])
+	</script>
+</body>
+</html>

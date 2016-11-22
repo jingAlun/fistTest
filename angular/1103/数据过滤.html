@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<h1>1、Filter列表</h1>
+		<ul ng-init="list=['currency','date','filter','json','limitTo', 'lowercase', 'number', 'orderBy']">
+			<Li ng-repeat="name in list | filter:lowercase">{{ name }}</Li>
+		</ul>
+		<h2>2、数据过滤：<input type="text" ng-model="textName" placeholder="输入过滤信息...姓名或年龄"></h2>
+		<ol ng-init="names=[
+			{name:'a乔乐', age:'25'},
+			{name:'b周迅',age:'40'},
+			{name:'c魏瑞',age:'25'},
+			{name:'d展昭',age:'26'}
+		]">
+			<li ng-repeat="key in names | filter:textName">今年{{ key.name}}已经{{ key.age }}岁了!</li>
+		</ol>
+	</div>
+	<script type="text/javascript" src="../angular.min.js"></script>
+</body>
+</html>

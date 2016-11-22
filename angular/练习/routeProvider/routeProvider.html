@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>通过路由实现tab切换</title>
+	<style type="text/css">
+		ul li{
+			list-style: none;
+			float: left;
+			margin-right: 20px;
+		}
+	</style>
+</head>
+<body ng-controller="contrl">
+	<ul>
+		<li><a href="#beijing">北京</a></li>
+		<li><a href="#shanghai">上海</a></li>
+		<li><a href="#taiyuan">太原</a></li>
+		<li><a href="#guangzhou">广州</a></li>
+	</ul>
+	<div class="box" ng-view></div>
+	
+	<script type="text/javascript" src="../../jquery1.7.js"></script>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript" src="../../angular-animate.min.js"></script>
+	<script type="text/javascript" src="../../angular-route.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',['ngRoute']);
+		app.config(['$routeProvider',function($routeProvider){
+			
+			$routeProvider.when('/beijing',{
+				templateUrl:"./view/bj.html"
+			})
+		}])
+		app.controller('contrl',['$scope',function($scope){
+			
+		}])
+	</script>
+</body>
+</html>

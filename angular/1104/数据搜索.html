@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		table{
+			width: 100%;
+			border:1px solid silver;
+			border-collapse: collapse;
+			margin-top:20px;
+		}
+		table td,th{
+			border-collapse: collapse;
+			border: 1px solid silver;
+			padding: 5px;
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+	<div>
+		<label for="">全局搜索：</label><input type="text" ng-model='teamInfo.$'>
+		<label for="">比赛轮次：</label>
+		<select name="" id="" ng-model="teamInfo.Round" ng-options="v for v in uniqueRound" ng-change="resetFilter(teamInfo.Round)">
+			<option value="">请选择比赛轮次</option>
+		</select>
+		<label for="">比赛球场：</label><input type="text" ng-model="teamInfo.Situation" >
+		<label for="">比赛日期：</label>
+		<select name="" id="" ng-model="teamInfo.date" ng-options="v for v in uniqueDate" ng-change="resetFilter(teamInfo.date)">
+			<option value="">请选择比赛日期</option>
+		</select>
+	</div>
+	<table ng-controller="mycon">
+		<tr>
+			<th>场次</th><th>轮次</th><th>主场</th><th>客场</th><th>城市</th><th>球场</th><th>日期</th>
+		</tr>
+		<tr ng-repeat="info in match2015Data | filter: teamInfo">
+			<td>{{ $index+1}}</td><td>{{ info.Round }}</td><td>{{ info.Team1}}</td><td>{{ info.Team2}}</td><td>{{ info.MatchCity}}</td><td>{{ info.Situation}}</td><td>{{ info.date}}</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+		app.controller('mycon',['$scope',function($scope){
+			$scope.match2015Data = match2015Data;
+			$scope.teamInfo = {};
+			$scope.resetFilter = function(v) {
+		        if (!v) $scope.teamInfo = {};
+		    }
+
+		    var uniqueValueInArray = function(arr, obj) {
+	        	var n = {}, r = [];
+		        for (var i = 0; i < arr.length; i++) {
+			        var val = obj ? arr[i][obj] : arr[i];
+			        if (!n[val]) {
+			          	n[val] = true;
+			            r.push(val);
+			        }
+		        }
+	        	return r;
+     		};
+
+		    $scope.uniqueRound = uniqueValueInArray(match2015Data, 'Round');
+		    $scope.uniqueDate = uniqueValueInArray(match2015Data, 'date');
+
+		}])
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		[ng-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body ng-controller="contrl" ng-cloak>
+	<p>{{ name }}</p>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+			app.provider('aaa',function(){ 
+				var title = "hello world";
+				return {
+					setName:function(n){
+						if(n){
+							title = n;
+						}
+					},
+					$get:function(){
+						var obj = {
+							getName:function(){
+								return "hello:"+title;
+							}
+						}
+						return obj;
+					}
+				}
+			})
+			
+
+		
+		/*//配置供应商
+		app.config(['aaaProvider',function(aaaProvider) {
+		
+			aaaProvider.setName('qqqqqq');
+		
+		}]);*/
+		app.controller('contrl',['$scope','aaa',function($scope,aaa){
+			
+			console.log(aaa)
+			$scope.name = aaa.getName();
+		}])
+	</script>
+</body>
+</html>

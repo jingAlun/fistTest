@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		[ng-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+<body ng-controller="contrl" ng-cloak>
+	<p>{{ name }}</p>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+		app.constant('aaa','新闻');  
+		app.constant('aaa','娱乐');  //页面显示为娱乐   常量不可改变
+		app.controller('contrl',['$scope','aaa',function($scope,aaa){
+			
+			//显示到页面
+			$scope.name = aaa;
+
+		}])
+	</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-hide或ng-show通过js实现动画</title>
+	<style type="text/css">
+		.box{
+			width: 200px;
+			height: 200px;
+			background: pink;
+			-webkit-transition-duration:1s;
+			opacity: 0;
+		}
+		
+	</style>
+</head>
+<body ng-controller="contrl">
+	<input type="checkbox" ng-model="aa">
+	<div class="box" ng-show="aa"></div>
+	<script type="text/javascript" src="../../jquery1.7.js"></script>
+	<script type="text/javascript" src="../../angular.min.js"></script>
+	<script type="text/javascript" src="../../angular-animate.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp',['ngAnimate']);
+		app.animation('.box',function(){
+			return {
+				removeClass:function(ele,done){
+					$(ele).animate({
+						'opacity':1
+					},1000)
+				},
+				addClass:function(ele,done){
+					//console.log('离开')
+					/*$(ele).css({
+						'opacity':0
+					})*/
+					$(ele).animate({
+						'opacity':0
+					},1000)
+				}
+			}
+		})
+		app.controller('contrl',['$scope',function($scope){
+			
+		}])
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-controller="contrl">
+	<select ng-model="selectPerson" ng-options="person.name for person in lists"></select>
+	<select ng-model="selectGenre">
+		<option ng-repeat="genre in lists[selectPerson.id].interest">{{ genre }}</option>
+	</select>
+	<script type="text/javascript" src="../angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myapp',[]);
+			app.controller('contrl',['$scope',function($scope){
+				$scope.lists = [
+					{
+						id: 0,
+                        name: '乔乐',
+                        interest: [
+                            '爬山',
+                            '游泳',
+                            '旅游',811
+                            '美食'
+                        ]
+					},
+					{
+                        id: 1,
+                        name: 'Chris',
+                        interest: [
+                            '音乐',
+                            '美食',
+                            'Coffee',
+                            '看书'
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: '魏瑞',
+                        interest: [
+                            '音乐',
+                            '电影',
+                            '中国好声音',
+                            '爸爸去哪了',
+                            '非常静距离'
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: '小飞子',
+                        interest: [
+                            '游泳',
+                            '游戏',
+                            '宅家里'
+                        ]
+                    }
+
+
+				]
+
+			}])
+
+	</script>
+</body>
+</html>
